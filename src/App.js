@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { NavigationBar } from './components/NavigationBar';
+import { LandingPage } from './components/LandingPage'
+import { Layout } from './components/Layout';
+import { NoMatch } from './NoMatch';
+import styled from 'styled-components';
+import { ShowDetails } from './components/ShowDetails';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const Styles = styled.div`
+  background-color: #090f1f;
+`;
+
+class App extends Component {
+  render() {
+    return (
+      <Styles>
+          <NavigationBar />
+          <Layout>
+            <Router>
+              <Switch>
+                <Route exact path="/" component={LandingPage} />
+                <Route path="/showdetails" component={ShowDetails} />
+                <Route component={NoMatch} />
+              </Switch>
+            </Router>
+          </Layout>
+      </Styles>
+    );
+  }
 }
 
 export default App;
